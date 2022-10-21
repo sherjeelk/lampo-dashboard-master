@@ -1,0 +1,84 @@
+.menu-container{
+  width: 100%;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  text-align: left;
+}
+
+.menu-item{
+  cursor: pointer;
+  color: #aeaeae;
+  min-height: 2rem;
+  padding: 12px 12px 12px 24px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.selected {
+  color: #102027;
+}
+
+.selected-item {
+  color: whitesmoke;
+  background-color: #102027;
+
+  .icon {
+    color: #EF6A3C;
+  }
+}
+
+.selected-icon {
+  color: #EF6A3C;
+}
+
+
+
+.menu-item:hover {
+  color: whitesmoke;
+  background-color: #102027;
+
+  .icon {
+    color: #EF6A3C;
+  }
+}
+
+.menu-icon-container{
+  width: 100%;
+  text-align: center;
+}
+
+.menu-icon-item{
+  cursor: pointer;
+  color: whitesmoke;
+  min-height: 2rem;
+  margin-top: 18px;
+  font-size: 24px;
+  margin-bottom: 18px;
+}
+
+.header-link{
+  color: #f0f0f0;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 12px;
+}
+.menu-icon-item{
+  padding: 10px 0;
+}
+.active-color{
+  background-color: #ef6a3c;
+  padding: 10px 23px 10px 18px;
+
+
+}
+.active-color:hover{
+  color: #ffffff!important;
+}
+.hover-icon{
+  transition:  all 0.2s ease-in;
+}
+
+.hover-icon:hover{
+  color: #ef6a3c;
+}

@@ -1,0 +1,77 @@
+<div class="container">
+  <div class="d-flex justify-content-between">
+    <h3>{{data.select ? 'Add New Pricing' : 'Update Pricing'}}</h3>
+    <button (click)="cancel()" class="close-btn"
+    ><span class="mdi mdi-window-close"></span></button>
+  </div>
+  <hr>
+  <form [formGroup]="addNewPricingForm">
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="mb-3 align-input">
+          <label class="form-label" for="name"><strong
+            class="form_label required">Name</strong></label>
+          <input aria-describedby="Name" class="input-grey"
+                 formControlName="name"
+                 id="name"
+                 placeholder="Name" type="text">
+          <app-input-error [form]="addNewPricingForm" [msg]="errors.name"
+                           field="name"></app-input-error>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12">
+        <!--        <div class="mb-3 align-input">-->
+        <!--          <label class="form-label" for="type"><strong-->
+        <!--            class="form_label required">Type</strong></label>-->
+        <!--          <input aria-describedby="Type" class="input-grey" id="type" type="text"-->
+        <!--                 formControlName="type" placeholder="Type">-->
+        <!--          <app-input-error [form]="addNewPricingForm" field="type"-->
+        <!--                           [msg]="errors.type"></app-input-error>-->
+        <!--        </div>-->
+        <div class="mb-3 align-input">
+          <label class="form-label" for="type"><strong class="form_label
+          required">Type</strong></label>
+          <nb-select class="input-grey" formControlName="type"
+                     id="type" placeholder="Select type">
+            <nb-option value="percentage">Percentage</nb-option>
+            <nb-option value="absolute">Absolute</nb-option>
+          </nb-select>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="mb-3 align-input">
+          <label class="form-label" for="enable"><strong
+            class="form_label required">Enable</strong></label>
+          <mat-slide-toggle color="primary" formControlName="enable"
+                            id="enable" class="w-100" (change)="setToggle($event)">{{isEnable ? 'Yes' : 'No'}}</mat-slide-toggle>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="mb-3 align-input">
+          <label class="form-label" for="value"><strong
+            class="form_label required">Value</strong></label>
+          <input aria-describedby="Value" class="input-grey"
+                 formControlName="value"
+                 id="value"
+                 placeholder="Value" type="text">
+          <app-input-error [form]="addNewPricingForm" [msg]="errors.value"
+                           field="value"></app-input-error>
+        </div>
+      </div>
+    </div>
+
+
+    <div>
+      <button (click)="onSubmit()" *ngIf="data.select" color="primary"
+              mat-raised-button> Submit
+      </button>
+      <button (click)="onUpdate()" *ngIf="data.selected" color="accent"
+              mat-raised-button>
+        Update
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,55 @@
+<div class="spinner" *ngIf="progress">
+  <mat-spinner></mat-spinner>
+</div>
+<div class="container" *ngIf="!progress">
+  <div class="text-end">
+    <button (click)="close()" class="close-btn"><span class="mdi mdi-close"></span></button>
+  </div>
+  <div class="d-flex flex-wrap flex-stack my-5">
+    <h3 class="fw-bolder my-2">Image &amp; Files</h3>
+    <div class="d-flex my-2">
+      <button (click)="delete()" [disabled]="!showDelete" class="btn btn-sm btn-danger me-3">Delete
+      </button>
+      <a (click)="openUploadDialog()" class="btn btn-sm btn-primary me-3">Add File</a>
+    </div>
+    <!--end::Controls-->
+  </div>
+  <!--end::Toolbar-->
+  <!--begin::Row-->
+  <div class="row g-6 mb-6">
+    <div *ngFor="let file of files" class="col-lg-3 col-md-4 col-sm-6">
+      <mat-card class="file-card mat-elevation-z2 h-100">
+        <!--begin::Card body-->
+        <div class="text-center">
+          <div class="text-gray-800">
+            <div *ngIf="file.ext === '.gif' || file.ext === '.jpg' || file.ext === '.png' || file.ext === '.jpeg' || file.ext === '.webp'; else otherFile"
+                 class="min-h-img-holder">
+              <img (click)="getId(file)" [src]="BASE_URL + file.url" alt=""
+                   class="file-img">
+            </div>
+
+            <ng-template #otherFile>
+              <div class="pt-7 h-150px">
+                <img alt="" class="file-img"
+                     src="/assets/images/files/{{file.ext.substring(1)}}.svg">
+              </div>
+            </ng-template>
+
+            <!--begin::Title-->
+            <div class="row">
+              <div class="col-10">
+                <div class="fs-5 fw-bolder t-left mb-2 mt-5">{{file.name | truncate:[20]}}</div>
+              </div>
+              <div class="col-2">
+                <mat-checkbox (change)="checkboxChanged()" [(ngModel)]="file.checked"
+                              class="mt-5"></mat-checkbox>
+              </div>
+            </div>
+            <!--end::Title-->
+          </div>
+          <div class="fs-7 fw-bold text-gray-400 t-left mt-auto">{{file.updatedAt | humanDate}}</div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>

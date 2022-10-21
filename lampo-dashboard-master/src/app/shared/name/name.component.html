@@ -1,0 +1,12 @@
+
+<div class="first-letter" *ngIf="userName">
+  <span
+    [ngStyle]="{backgroundColor: letter.primary, color: letter.secondary}"
+    class="letter"
+  >{{letter.letter}}</span>
+  <span class="user-name" [matMenuTriggerFor]="menu">{{userName}}</span>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>Profile</button>
+    <button mat-menu-item (click)="logOut()">Logout</button>
+  </mat-menu>
+</div>

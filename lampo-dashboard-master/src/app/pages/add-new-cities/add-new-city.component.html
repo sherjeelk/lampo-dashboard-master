@@ -1,0 +1,62 @@
+<div class="container">
+  <div class="modal-header" >
+    <h3>{{data.select? 'Add New City': 'Update City'}}</h3>
+    <button class="close-btn" (click)="cancel()"
+    ><span class="mdi mdi-window-close"></span></button>
+  </div>
+  <form [formGroup]="addNewCityForm" >
+    <div class="mb-3 align-input">
+      <label class="form-label" for="name"><strong
+        class="form_label required">Name</strong></label>
+      <input aria-describedby="Name" class="input-grey" id="name" type="text"
+             formControlName="name" placeholder="Name">
+      <app-input-error [form]="addNewCityForm" field="name"
+                       [msg]="errors.name"></app-input-error>
+    </div>
+
+    <div class="mb-3 align-input">
+      <label class="form-label" for="name"><strong
+        class="form_label required">Country</strong></label>
+      <input aria-describedby="Country" class="input-grey" id="country" type="text"
+             formControlName="country" placeholder="Country">
+      <app-input-error [form]="addNewCityForm" field="country"
+                       [msg]="errors.country"></app-input-error>
+    </div>
+
+    <div class="mb-3 align-input">
+      <label class="form-label required" for="postcode"><strong
+        class="form_label">Post Code</strong></label>
+      <input aria-describedby="Post Code" class="input-grey" id="postcode" type="text"
+             formControlName="postcode" placeholder="Post Code">
+      <app-input-error [form]="addNewCityForm" field="postcode"
+                       [msg]="errors.postcode"></app-input-error>
+    </div>
+
+
+    <div class="mb-3 align-input">
+      <div>
+        <label class="form-label" for="available"><strong class="form_label required"> Available </strong></label>
+      </div>
+
+      <mat-slide-toggle id="available" formControlName="available" color="primary"
+      ></mat-slide-toggle>
+    </div>
+
+    <div class="mb-3 align-input">
+      <div>
+        <label class="form-label" for="enable"><strong class="form_label required"> Enable </strong></label>
+      </div>
+
+      <mat-slide-toggle id="enable" formControlName="enable" color="primary"
+      ></mat-slide-toggle>
+    </div>
+
+    <div >
+      <button *ngIf="data.select"  mat-raised-button color="primary"
+              (click)="onSubmit()"> Submit </button>
+      <button *ngIf="data.selected" mat-raised-button color="accent"
+              (click)="onUpdate()">
+        Update      </button>
+    </div>
+  </form>
+</div>

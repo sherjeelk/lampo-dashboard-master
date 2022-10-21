@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="d-flex justify-content-between">
+    <h3>{{data.select? 'Add New Service': 'Update Service'}}</h3>
+    <button class="close-btn" (click)="cancel()"
+    ><span class="mdi mdi-window-close"></span></button>
+  </div>
+  <hr>
+  <form [formGroup]="addNewServiceForm" >
+    <div class="mb-3 align-input">
+      <label class="form-label" for="name"><strong
+        class="form_label">Service Name</strong></label>
+      <input aria-describedby="Name" class="input-grey" id="name" type="text"
+             formControlName="name" placeholder="Name">
+      <app-input-error [form]="addNewServiceForm" field="name"
+                       [msg]="errors.name"></app-input-error>
+    </div>
+
+    <div class="mb-3 align-input">
+      <label class="form-label" for="desc"><strong
+        class="form_label">Service Name</strong></label>
+      <input aria-describedby="Description" class="input-grey" id="desc" type="text"
+             formControlName="desc" placeholder="Description">
+    </div>
+
+
+    <div class="mb-3 align-input">
+      <div>
+        <label class="form-label" for="enable"><strong class="form_label"> Enable </strong></label>
+      </div>
+
+      <mat-slide-toggle id="enable" formControlName="enable" color="primary"
+      ></mat-slide-toggle>
+    </div>
+
+    <div (click)="openPopUp()" class="selected-text mb-3">
+      <div *ngIf="!uploadFile" class="img-upload">
+        <img alt="" src="/assets/images/files/upload.svg">
+        <p class="mb-0 select-file">Click here to upload your image</p>
+      </div>
+      <div *ngIf="uploadFile" class="file-upload">
+        <img [src]="util.BASE_URL + uploadFile.file.url" alt="{{uploadFile.file.name}}" class="upload-img"
+        >
+      </div>
+    </div>
+    <div >
+      <button *ngIf="data.select"  mat-raised-button color="primary"
+              (click)="onSubmit()"> Submit </button>
+      <button *ngIf="data.selected" mat-raised-button color="accent"
+              (click)="onUpdate()">
+        Update      </button>
+    </div>
+  </form>
+</div>

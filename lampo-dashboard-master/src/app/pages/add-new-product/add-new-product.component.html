@@ -1,0 +1,116 @@
+<div class="container">
+  <div class="modal-header ">
+    <h3>{{data.select ? 'Add New Product' : 'Update Product'}}</h3>
+    <button (click)="cancel()" class="close-btn"
+    ><span class="mdi mdi-window-close"></span></button>
+  </div>
+  <form [formGroup]="addNewProductForm">
+    <div class="row">
+      <div class="col-6">
+        <div class="mb-3 align-input">
+          <label class="form-label" for="name"><strong
+            class="form_label required"> Name</strong></label>
+          <input aria-describedby="Name" class="input-grey"
+                 formControlName="name"
+                 id="name"
+                 placeholder="Name" type="text">
+          <app-input-error [form]="addNewProductForm" [msg]="errors.name"
+                           field="name"></app-input-error>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="mb-3 align-input">
+          <div>
+            <label class="form-label" for="enable"><strong
+              class="form_label required">
+              Enable </strong></label>
+          </div>
+
+          <mat-slide-toggle color="primary" formControlName="enable" id="enable"
+          ></mat-slide-toggle>
+        </div>
+
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-6">
+        <div class="mb-3 align-input">
+          <label class="form-label" for="description"><strong
+            class="form_label">Description</strong></label>
+          <input aria-describedby="Description" class="input-grey"
+                 formControlName="desc" id="description"
+                 placeholder="Description" type="text">
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="mb-3 align-input">
+          <label class="form-label" for="price"><strong
+            class="form_label required">Price</strong></label>
+          <input aria-describedby="Price" class="input-grey"
+                 formControlName="price"
+                 id="price"
+                 placeholder="Price" type="text">
+          <app-input-error [form]="addNewProductForm" [msg]="errors.price"
+                           field="price"></app-input-error>
+        </div>
+      </div>
+    </div>
+
+    <!--At the time of add-->
+    <div (click)="openPopUp()" *ngIf="data.select"
+         class="selected-text mb-3 mt-5">
+      <div *ngIf="!uploadFile.selected" class="img-upload">
+        <img alt="" src="/assets/images/files/upload.svg">
+        <p class="mb-0 select-file">Click here to upload your image</p>
+      </div>
+      <div *ngIf="uploadFile.file" class="file-upload">
+        <img [src]="util.BASE_URL + uploadFile.file.url"
+             alt="{{uploadFile.file.name}}" class="upload-img"
+        >
+
+      </div>
+
+
+    </div>
+    <!--    At the time of update-->
+    <div *ngIf="data.selected">
+      <div (click)="openPopUp()" *ngIf="!uploadFile.selected;else upload"
+           class="selected-text-1 mb-3 mt-5">
+
+        <div class="file-upload">
+          <div *ngIf="!data.product.image" class="dis-flex align-items-center">
+            <img alt="" src="/assets/images/files/upload.svg">
+            <p class="mb-0 select-file">Click here to upload your image</p>
+          </div>
+          <img *ngIf="data.product.image"
+               [src]="util.BASE_URL + data.product.image.url"
+               alt="" class="upload-img"
+          >
+
+        </div>
+
+      </div>
+      <ng-template #upload>
+        <div (click)="openPopUp()" class="file-upload">
+
+          <img *ngIf="uploadFile.file.url"
+               [src]="util.BASE_URL + uploadFile.file.url"
+               alt="{{uploadFile.file.name}}" class="upload-img"
+          >
+
+        </div>
+      </ng-template>
+    </div>
+    <div>
+      <button (click)="onSubmit()" *ngIf="data.select" color="primary"
+              mat-raised-button> Submit
+      </button>
+      <button (click)="onUpdate()" *ngIf="data.selected" color="accent"
+              mat-raised-button>
+        Update
+      </button>
+    </div>
+  </form>
+</div>

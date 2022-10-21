@@ -1,0 +1,62 @@
+<div class="container">
+  <div class="text">
+
+  </div>
+  <div class="dis-flex justify-content-between" >
+    <h4 class="card-heading m-t-24"><b>{{data.select ? 'Add New Coupon' : 'Update Coupon'}}</b></h4>
+    <button class="close-btn" (click)="cancel()"><span class="mdi mdi-close"></span></button>
+  </div>
+  <hr>
+  <form [formGroup]="addCouponForm" >
+    <div class="row">
+      <div class="col-6">
+        <div class="mb-3 align-input">
+          <label class="form-label" for="name"><strong class="form_label required">Name</strong></label>
+          <input aria-describedby="Name" class="input-grey" id="name" type="text" formControlName="coupon" placeholder="Name">
+          <app-input-error [form]="addCouponForm" field="coupon" [msg]="errors.coupon"></app-input-error>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="mb-3 align-input">
+          <label class="form-label" for="discount"><strong class="form_label required">Discount</strong></label>
+          <input aria-describedby="Discount" class="input-grey" id="discount" type="text"  formControlName="discount" placeholder="Discount">
+          <app-input-error [form]="addCouponForm" field="discount" [msg]="errors.discount"></app-input-error>
+        </div>
+      </div>
+    </div>
+
+<div class="row">
+  <div class="col-auto">
+    <div class="mb-3 align-input">
+      <label class="form-label" for="discountType"><strong class="form_label required">Discount Type</strong></label>
+
+      <select  class="input-grey" id="discountType" formControlName="type" >
+        <option value="" disabled>Choose here</option>
+        <option value="Percentage">Percentage</option>
+        <option value="Absolute">Absolute</option>
+      </select>
+      <app-input-error [form]="addCouponForm" field="type" [msg]="errors.type"></app-input-error>
+    </div>
+  </div>
+  <div class="col-auto">
+    <div class="mb-3 align-input">
+      <label class="form-label" for="valid"><strong class="form_label required">Expiry</strong></label>
+      <input aria-describedby="Valid" class="input-grey " id="valid" nbInput [nbDatepicker]="datePicker"  formControlName="expiry" placeholder="Choose date">
+      <nb-datepicker #datePicker [min]="min" ></nb-datepicker>
+      <app-input-error [form]="addCouponForm" field="expiry" [msg]="errors.expiry"></app-input-error>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+    <div class="text-end mt-4">
+      <button mat-stroked-button (click)="cancel()" class="cancel-btn">Cancel</button>
+      <button *ngIf="data.select"  mat-raised-button class="add-btn-table" (click)="onSubmit()" [disabled]="!addCouponForm.valid" style="padding: 2px 0">Add</button>
+      <button *ngIf="data.selected" mat-raised-button class="add-btn-table" (click)="onUpdate()" [disabled]="!addCouponForm.valid" style="padding: 2px 0">Update</button>
+    </div>
+  </form>
+</div>

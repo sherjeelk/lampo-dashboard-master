@@ -1,0 +1,85 @@
+<mat-card class="section-card">
+  <div class="row">
+    <div class="col-auto">
+      <h5>Cities</h5>
+      <p>Manage Cities - {{cities.length}} Records</p>
+    </div>
+
+    <div class="col text-end">
+      <span class="delete-text" *ngIf="deleteMultiple">{{deleteItems.length}} items selected</span>
+      <button mat-raised-button *ngIf="deleteMultiple" class="del-btn-table"
+              (click)="askDelete()"
+      >Delete All <span class="mdi mdi-delete-forever-outline btn-icon"></span></button>
+      <button mat-raised-button class="export-btn-table">Export <span class="mdi mdi-file-export-outline btn-icon"></span></button>
+      <button mat-raised-button class="add-btn-table" (click)="openDialog()">Add New City </button>
+    </div>
+  </div>
+
+
+  <hr>
+
+  <div *ngIf="progress" class="progress-container">
+    <nb-spinner></nb-spinner>
+  </div>
+
+  <table *ngIf="!progress">
+    <thead>
+
+    <tr>
+      <th class="table_head" scope="col">
+        <nb-checkbox (checkedChange)="checkAll($event)" [(ngModel)]="allItems"></nb-checkbox>
+      </th>
+      <th class="table_head" scope="col"> #</th>
+      <th class="table_head" scope="col">Name</th>
+      <th class="table_head" scope="col">Available</th>
+      <th class="table_head" scope="col">Country</th>
+      <th class="table_head" scope="col">Enable</th>
+      <th class="table_head" scope="col">postcode</th>
+      <th class="table_head" scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr *ngFor="let city of cities">
+      <th scope="row">
+        <nb-checkbox (checkedChange)="checkAll($event, city)"
+                     [(ngModel)]="city.checked"></nb-checkbox>
+      </th>
+      <th scope="row">{{city.id}}</th>
+      <td>{{city.name}}</td>
+      <td><span
+        [ngClass]="city.available? 'active': 'non-active'">{{city.available?
+        'Yes': 'No'}}</span></td>
+      <td>{{city.country}}</td>
+      <td><span
+        [ngClass]="city.enable? 'active': 'non-active'">{{city.enable ? 'Yes':
+        'No'}}</span></td>
+
+      <td>{{city.postcode}}</td>
+      <td>
+        <button class="btn action_btn" (click)="viewCity(city)">
+          <svg style="width:15px;height:15px" viewBox="0 0 24 24">
+            <path d="M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17M12,4.5C7,4.5 2.73,7.61 1,12C2.73,16.39 7,19.5 12,19.5C17,19.5 21.27,16.39 23,12C21.27,7.61 17,4.5 12,4.5Z"
+                  fill="#767676"/>
+          </svg>
+        </button>
+        <button class="btn action_btn" (click)="askDelete(city)">
+          <svg style="width:15px;height:15px" viewBox="0 0 24 24">
+            <path d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M9,8H11V17H9V8M13,8H15V17H13V8Z"
+                  fill="#767676"/>
+          </svg>
+        </button>
+      </td>
+    </tr>
+
+    </tbody>
+  </table>
+
+
+  <mat-paginator (page)="changePage($event)" [length]="pages.total" [pageSizeOptions]="[10, 25, 50, 100, 500, 2000]"
+                 [pageSize]="pages.limit">
+
+  </mat-paginator>
+</mat-card>
+
+

@@ -1,0 +1,27 @@
+<div class="holder">
+  <div class="header-container">
+    <div class="logo-container">
+      <a (click)="toggleSidebar()" href="#" class="sidebar-toggle">
+        <nb-icon icon="menu-2-outline"></nb-icon>
+      </a>
+      <a class="logo" href="#" (click)="navigateHome()">
+        <img src="assets/lampo-logo.png" class="logo" alt=""/>
+      </a>
+    </div>
+  </div>
+
+  <div class="header-container">
+    <nb-actions size="small">
+
+
+      <nb-action class="user-action" *ngIf="session.isLoggedIn">
+        <app-name [userName]="session.getUser().username"></app-name>
+        <!--        <nb-user [nbContextMenu]="userMenu"-->
+        <!--                 [name]="session.getUser().username"-->
+        <!--                 nbContextMenuTag="profile-context-menu">-->
+        <!--        </nb-user>-->
+
+      </nb-action>
+    </nb-actions>
+  </div>
+</div>

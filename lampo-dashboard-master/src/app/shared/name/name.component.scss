@@ -1,0 +1,17 @@
+.first-letter{
+  display: flex;
+  align-items: center;
+}
+
+.letter{
+  padding: 8px 10px;
+  font-size: 17px;
+  border-radius: 50%;
+  margin-right: 11px;
+}
+
+.user-name{
+  font-size: 12px;
+  text-transform: capitalize;
+  cursor: pointer;
+}

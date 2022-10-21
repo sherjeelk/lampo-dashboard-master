@@ -1,0 +1,101 @@
+<div class="container">
+  <div class="d-flex justify-content-between">
+    <h3>{{ data.select ? "Add New Users" : "Update User" }}</h3>
+    <button class="close-btn" (click)="cancel()">
+      <span class="mdi mdi-window-close"></span>
+    </button>
+  </div>
+  <hr />
+  <form [formGroup]="addNewUserForm">
+    <div class="mb-3 align-input">
+      <label class="form-label" for="desc"
+        ><strong class="form_label">User Name</strong></label
+      >
+      <input
+        aria-describedby="Description"
+        class="input-grey"
+        id="desc"
+        type="text"
+        formControlName="username"
+        placeholder="User name"
+      />
+      <app-input-error [form]="addNewUserForm" [msg]="errors.username"
+                       field="username"></app-input-error>
+    </div>
+
+    <div class="mb-3 align-input" >
+      <label class="form-label" for="email"
+        ><strong class="form_label">Email</strong></label
+      >
+      <input
+      #emailField
+      [attr.readonly]='data.user'
+        aria-describedby="Email"
+        class="input-grey"
+        id="email"
+        type="email"
+        formControlName="email"
+        placeholder="Email"
+      />
+      <app-input-error [form]="addNewUserForm" [msg]="errors.email"
+                       field="email"></app-input-error>
+    </div>
+    <div class="mb-3 align-input">
+      <label class="form-label" for="password"
+        ><strong class="form_label">Password</strong></label
+      >
+      <input
+        aria-describedby="password"
+        class="input-grey"
+        id="password"
+        type="password"
+        formControlName="password"
+        placeholder="Password"
+      />
+      <app-input-error [form]="addNewUserForm" [msg]="errors.password"
+                       field="password"></app-input-error>
+    </div>
+    <div class="row">
+      <div class="mb-3 align-input col-6">
+        <label class="form-label"
+          ><strong class="form_label">Confirmed</strong></label
+        >
+        <mat-slide-toggle
+          color="primary"
+          formControlName="confirmed"
+          class="w-100"
+        ></mat-slide-toggle>
+      </div>
+
+      <div class="mb-3 align-input col-6">
+        <label class="form-label"
+          ><strong class="form_label">Blocked</strong></label
+        >
+        <mat-slide-toggle
+          color="primary"
+          formControlName="blocked"
+          class="w-100"
+        ></mat-slide-toggle>
+      </div>
+    </div>
+
+    <div>
+      <button
+        *ngIf="data.select"
+        mat-raised-button
+        color="primary"
+        (click)="onSubmit()"
+      >
+        Submit
+      </button>
+      <button
+        *ngIf="data.selected"
+        mat-raised-button
+        color="accent"
+        (click)="onUpdate()"
+      >
+        Update
+      </button>
+    </div>
+  </form>
+</div>

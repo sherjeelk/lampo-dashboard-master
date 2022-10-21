@@ -1,0 +1,354 @@
+<div class="container">
+
+  <!--  <div class="modal-header">-->
+  <!--    &lt;!&ndash;    <h3>{{data.select? 'Add New Order': 'Update Order'}}</h3>&ndash;&gt;-->
+  <!--    <button class="close-btn"-->
+  <!--    ><span class="mdi mdi-window-close"></span></button>-->
+  <!--  </div>-->
+  <form [formGroup]="addNewOrderForm">
+    <div class="row">
+      <div class="col-6">
+        <div class="mb-3 align-input">
+          <label class="form-label " for="f_name"><strong
+            class="form_label required">First Name</strong></label>
+          <input aria-describedby="First Name" class="input-grey" formControlName="f_name" id="f_name"
+                 placeholder="First Name" type="text">
+          <app-input-error [form]="addNewOrderForm" [msg]="errors.f_name" field="f_name"></app-input-error>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="mb-3 align-input">
+          <label class="form-label" for="l_name"><strong
+            class="form_label required">Last Name</strong></label>
+          <input aria-describedby="Last Name" class="input-grey" formControlName="l_name" id="l_name"
+                 placeholder="Last Name" type="text">
+          <app-input-error [form]="addNewOrderForm" [msg]="errors.l_name"
+                           field="l_name"></app-input-error>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <div class="mb-3 align-input">
+          <label class="form-label " for="phone"><strong
+            class="form_label required">Phone</strong></label>
+          <input (blur)="getPhone($event)" aria-describedby="Phone" class="input-grey" formControlName="phone"
+                 id="phone"
+                 placeholder="Phone" type="text">
+          <app-input-error [form]="addNewOrderForm" [msg]="errors.phone"
+                           field="phone"></app-input-error>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="mb-3 align-input">
+          <label class="form-label " for="city"><strong
+            class="form_label required">City</strong></label>
+          <input aria-describedby="City" class="input-grey" formControlName="city" id="city"
+                 placeholder="City" type="text">
+          <app-input-error [form]="addNewOrderForm" [msg]="errors.city"
+                           field="city"></app-input-error>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <div class="mb-3 align-input">
+          <label class="form-label " for="postcode"><strong
+            class="form_label required">Post Code</strong></label>
+          <input aria-describedby="Post Code" class="input-grey" formControlName="postcode" id="postcode"
+                 placeholder="Post Code" type="text">
+          <app-input-error [form]="addNewOrderForm" [msg]="errors.postcode"
+                           field="postcode"></app-input-error>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="mb-3 align-input">
+          <label class="form-label " for="address"><strong
+            class="form_label required">Address</strong></label>
+          <input aria-describedby="Post Code" class="input-grey" formControlName="address" id="address"
+                 placeholder="Address" type="text">
+          <app-input-error [form]="addNewOrderForm" [msg]="errors.address"
+                           field="postcode"></app-input-error>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <div class="mb-3 align-input">
+          <label class="form-label " for="email"><strong
+            class="form_label required">Email</strong></label>
+          <input aria-describedby="Email" class="input-grey" formControlName="email" id="email"
+                 placeholder="Email" type="email">
+          <app-input-error [form]="addNewOrderForm" [msg]="errors.email"
+                           field="email"></app-input-error>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="mb-3 align-input">
+          <label class="form-label " for="totalPrice"><strong
+            class="form_label required">Total Price</strong></label>
+          <input aria-describedby="Total Price" class="input-grey" formControlName="total" id="totalPrice"
+                 placeholder="Total Price" type="text">
+          <app-input-error [form]="addNewOrderForm" [msg]="errors.total"
+                           field="total"></app-input-error>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <div class="mb-3 align-input">
+          <label class="form-label " for="service"><strong
+            class="form_label required">Services</strong></label>
+          <select class="form-select input-grey" formControlName="service" id="service">
+            <option *ngFor="let item of services" value="{{item.name}}">{{item.name}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="mb-3 align-input">
+          <label class="form-label" for="heatedSpaceSize"><strong
+            class="form_label required">Space to be heated or reduced in squares</strong></label>
+          <!--          <div class="form-check margin-space">-->
+          <!--            <input class="form-check-input" type="radio" name="flexRadioDefault" value="0- 50">-->
+          <!--            <label class="form-check-label">-->
+          <!--              0- 50 m²-->
+          <!--            </label>-->
+          <!--          </div>-->
+          <!--          <div class="form-check margin-space">-->
+          <!--            <input class="form-check-input" type="radio" name="flexRadioDefault" value="50-90">-->
+          <!--            <label class="form-check-label">-->
+          <!--              50-90 m²-->
+          <!--            </label>-->
+          <!--          </div>-->
+          <!--          <div class="form-check margin-space">-->
+          <!--            <input class="form-check-input" type="radio" name="flexRadioDefault" value="90-140">-->
+          <!--            <label class="form-check-label">-->
+          <!--              90-140 m²-->
+          <!--            </label>-->
+          <!--          </div>-->
+          <!--          <div class="form-check margin-space">-->
+          <!--            <input class="form-check-input" type="radio" name="flexRadioDefault"value="140-200">-->
+          <!--            <label class="form-check-label">-->
+          <!--              140-200 m²-->
+          <!--            </label>-->
+          <!--          </div>-->
+          <div class="margin-space">
+            <mat-radio-group aria-label="Select an option" formControlName="heatedSpaceSize" id="heatedSpaceSize">
+              <mat-radio-button class="radio_btn L-M" style="margin-left: 5px; padding: 5px;" value="0-50">0- 50 m²
+              </mat-radio-button>
+              <mat-radio-button class="radio_btn L-M" style="margin-left: 5px; padding: 5px; " value="50-90"> 50-90 m²
+              </mat-radio-button>
+              <mat-radio-button class="radio_btn L-M" style="margin-left: 5px; padding: 5px; " value="90-140"> 90-140 m²
+              </mat-radio-button>
+              <mat-radio-button class="radio_btn L-M" style="margin-left: 5px; padding: 5px; " value="140-200"> 140-200
+                m²
+              </mat-radio-button>
+            </mat-radio-group>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-6">
+        <div class="mb-3 align-input">
+          <label class="form-label" for="deviceRequirement"><strong
+            class="form_label required">I want a device</strong></label>
+          <div class="margin-space">
+            <mat-radio-group aria-label="Select an option" formControlName="deviceRequirement" id="deviceRequirement">
+              <mat-radio-button class="radio_btn L-M" style="margin-left: 5px; padding: 5px;" value="1"> For heating and
+                flourishing
+              </mat-radio-button>
+              <mat-radio-button class="radio_btn L-M" style="margin-left: 5px; padding: 5px; " value="2"> Only for
+                fading
+              </mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="mb-3 align-input">
+          <label class="form-label" for="airFiltration"><strong
+            class="form_label required">Air filtration</strong></label>
+          <div class="margin-space">
+            <mat-radio-group aria-label="Select an option" formControlName="airFiltration" id="airFiltration">
+              <mat-radio-button class="radio_btn L-M" style="margin-left: 5px; padding: 5px;" value="Karkeä suödätus">
+                Coarse feeding
+              </mat-radio-button>
+              <mat-radio-button class="radio_btn L-M" style="margin-left: 5px; padding: 5px; "
+                                value="Sähkosudätus">Electrical weaving
+              </mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <div class="mb-3 align-input">
+          <label class="form-label " for="product"><strong
+            class="form_label required">Products</strong></label>
+          <select [(ngModel)]="selectedProduct" class="form-select input-grey" formControlName="product" id="product">
+            <option *ngFor="let product of products" [value]="product.id">{{product.name}}</option>
+          </select>
+        </div>
+        <table class="table">
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Action</th>
+          </tr>
+          <tr *ngFor=" let item of selectProduct ,let i = index">
+            <td>{{i + 1}}</td>
+            <td>{{item.name}}</td>
+            <td>
+              <button (click)="productDelete(i)" class="btn action_btn">
+                <svg style="width:15px;height:15px" viewBox="0 0 24 24">
+                  <path
+                    d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M9,8H11V17H9V8M13,8H15V17H13V8Z"
+                    fill="#767676"/>
+                </svg>
+              </button>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-2">
+        <div class="align-input  select-product-list">
+          <button (click)="addProduct()" class="mt-4"
+                  color="primary" mat-raised-button> Add Product
+          </button>
+        </div>
+
+      </div>
+      <div class="col-6">
+        <div class="mb-3 align-input">
+          <label class="form-label " for="note"><strong
+            class="form_label required">Notes</strong></label>
+          <input aria-describedby="s" class="input-grey" formControlName="note" id="note"
+                 placeholder="Note" type="text">
+          <app-input-error [form]="addNewOrderForm" [msg]="errors.note"
+                           field="note"></app-input-error>
+        </div>
+      </div>
+
+
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <div class="mb-3 align-input">
+          <label class="form-label" for="startDate"><strong
+            class="form_label required">Choose a date</strong></label>
+          <input [nbDatepicker]="datePicker" class="input-grey" formControlName="startDate" id="startDate"
+                 nbInput placeholder="choose a date">
+          <nb-datepicker #datePicker [min]="min"></nb-datepicker>
+        </div>
+      </div>
+
+      <div class="col-6">
+        <!--        <div class="open-sloat">-->
+        <!--          <button class="open-sloat-btn" (click)="OpenSlot()">Get Slot</button>-->
+        <!--        </div>-->
+
+        <div class="mb-3 align-input">
+          <label class="form-label " for="contactTime"><strong
+            class="form_label required">Contact Time</strong></label>
+          <input aria-describedby="contactTime" class="input-grey" formControlName="contactTime"
+                 id="contactTime"
+                 placeholder="contactTime" type="time">
+          <!--          <input class="input-grey" formControlName="contactPhone" id="contactPhone"-->
+          <!--                 placeholder="Contact Phone" type="text">-->
+        </div>
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <div class="mb-3 align-input">
+          <label class="form-label " for="contactEmail"><strong
+            class="form_label required">Contact Email</strong></label>
+          <input aria-describedby="s" class="input-grey" formControlName="contactEmail"id="contactEmail"
+                 placeholder="Contact Email" type="email">
+          <app-input-error [form]="addNewOrderForm" [msg]="errors.contactEmail"
+                           field="contactEmail"></app-input-error>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="mb-3 align-input">
+          <label class="form-label " for="contactDate"><strong
+            class="form_label required">Contact Date</strong></label>
+          <input [nbDatepicker]="datepicker" aria-describedby="s" class="input-grey" formControlName="contactDate"
+                 id="contactDate" nbInput placeholder="Contact Date">
+          <nb-datepicker #datepicker [min]="minimum"></nb-datepicker>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <div class="mb-3 align-input">
+          <label class="form-label " for="startTime"><strong
+            class="form_label required">Start Time</strong></label>
+          <input aria-describedby="s" class="input-grey" formControlName="startTime" id="startTime"
+                 placeholder="Start Time" type="time">
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="mb-3 align-input">
+          <label class="form-label " for="endTime"><strong
+            class="form_label required">End Time</strong></label>
+          <input aria-describedby="s" class="input-grey" formControlName="endTime" id="endTime"
+                 placeholder="End Time" type="time">
+        </div>
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <div class="mb-3 align-input">
+          <label class="form-label" for="contactMe"><strong
+            class="form_label required">Contact Me</strong></label>
+          <div class="margin-space">
+            <mat-radio-group aria-label="Select an option" formControlName="contactMe" id="contactMe">
+              <mat-radio-button [value]="true" class="radio_btn L-M" style="margin-left: 5px; padding: 5px;">Yes
+              </mat-radio-button>
+              <mat-radio-button [value]="false" class="radio_btn L-M" style="margin-left: 5px; padding: 5px; ">No
+              </mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="mb-3 align-input">
+          <label class="form-label" for="size"><strong
+            class="form_label required">Size</strong></label>
+          <input aria-describedby="s" class="input-grey" formControlName="size" id="size"
+                 placeholder="Size" type="number">
+        </div>
+      </div>
+    </div>
+    <div class="order-btn">
+      <button (click)="onSubmit()" *ngIf="submitBtn" class="mt-4"
+              color="primary" mat-raised-button> Submit
+      </button>
+
+      <button (click)="onUpdate()" *ngIf="updateBtn" color="accent"
+              mat-raised-button>
+        Update
+      </button>
+      <!--      <button  (click)="onCancel()" class="cancel-btn"-->
+      <!--              color="primary" mat-stroked-button >Cancel-->
+      <!--      </button>-->
+      <button (click)="onCancel()" class="cancel-btn" mat-stroked-button >Cancel</button>
+    </div>
+
+  </form>
+  <!--    <div *ngIf="formValid">Form is not valid please check all field</div>-->
+  <!--  <div *ngFor="let sloat of allSloats" class="my-3">-->
+  <!--    <div  class="border-bottom no_slot">-->
+  <!--      <p class="mb-0 pt-3 L-SB">{{sloat.date}}</p>-->
+  <!--    </div>-->
+  <!--  </div>-->
+
+</div>

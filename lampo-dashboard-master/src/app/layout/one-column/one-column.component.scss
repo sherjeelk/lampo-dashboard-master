@@ -1,0 +1,11 @@
+@import '../../../../node_modules/@nebular/theme/styles/global/breakpoints';
+
+.menu-sidebar{
+  //background-color: #0b2582;
+  padding: 0;
+  background-color: #0d151f;
+
+  .scrollable {
+    padding: 0;
+  }
+}

@@ -1,0 +1,26 @@
+.file-img{
+  background-size: cover;
+  width: auto;
+  height: auto;
+  max-width: 170px;
+  max-height: 170px;
+  object-fit: cover;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.file-card{
+  max-height: 250px;
+  border-radius: 12px;
+  position: relative;
+}
+
+.min-h-img-holder {
+  min-height: 160px;
+}
+.spinner{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}

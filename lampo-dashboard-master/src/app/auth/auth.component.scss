@@ -1,0 +1,103 @@
+* {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.1rem;
+}
+
+.container {
+
+  .card-heading {
+    color: #56ab2f;
+  }
+
+  .card-padding{
+    border-radius: 8px;
+    padding: 16px 32px;
+  }
+
+  .admin_form {
+    //position: absolute;
+    //top: 50%;
+    //left: 50%;
+    //transform: translate(-50%, -50%);
+    //width: 28%;
+    //border-radius: 5px;
+    border-radius: 5px;
+    display: inline-block;
+    margin: auto;
+
+    .primary-button {
+      background-color: #56ab2f;
+      color: #ffffff;
+    }
+
+    .fg_pass {
+      color: #56ab2f;
+      font-size: 12px;
+      text-align: end;
+      cursor: pointer;
+    }
+  }
+
+  .form_label {
+    font-size: 14px;
+  }
+
+  .logo{
+    max-width: 250px;
+    margin-bottom: 4px;
+  }
+
+
+  .primary-btn{
+    font-size: 14px!important;
+  }
+
+  .auth-img{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .img-one{
+      position: absolute;
+      bottom: 0;
+      width: 20%;
+      left: 0;
+    }
+    .img-two{
+      position: absolute;
+      bottom: 0;
+      width: 20%;
+      right: 0;
+    }
+  }
+}
+
+
+@media only screen and (max-width: 550px) {
+  .container {
+    .admin_form {
+      width: 95% !important;
+    }
+
+    .img_loginOne,.img_loginTwo{
+      width:40%!important;
+    }
+  }
+}
+
+
+.bg-bottom{
+  background-image: url('/assets/images/combine.png');
+  background-color: #ffffff;
+  background-position-y: bottom;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+a{
+  text-decoration: none !important;
+}
+
+.msg{
+  line-height: 28px;
+}

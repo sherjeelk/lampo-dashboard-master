@@ -1,0 +1,29 @@
+<nb-layout>
+  <nb-layout-column class="bg-bottom">
+    <div class="container t-center">
+      <div class="admin_form">
+        <div class="text-center m-b-20">
+          <img alt="" class="logo" routerLink="/" src="assets/i-hulto-logo.png">
+        </div>
+        <mat-card class="w-lg-600px bg-white rounded shadow-sm p-10 p-lg-15 mx-auto t-left">
+          <div>
+            <router-outlet></router-outlet>
+          </div>
+        </mat-card>
+
+        <div class="d-flex flex-center flex-column-auto p-10">
+          <!--begin::Links-->
+          <div class="d-flex align-items-center fw-bold fs-6">
+            <a routerLink="/about" class="text-muted text-hover-primary px-2">About</a>
+            <a routerLink="/contact" class="text-muted text-hover-primary px-2">Contact</a>
+            <a routerLink="/contact" class="text-muted text-hover-primary px-2">Contact Us</a>
+          </div>
+          <!--end::Links-->
+        </div>
+      </div>
+
+    </div>
+
+  </nb-layout-column>
+
+</nb-layout>

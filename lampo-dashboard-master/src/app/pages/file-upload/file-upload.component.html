@@ -1,0 +1,234 @@
+<div class="dialog-container">
+  <div class="modal-header pb-0 border-0 justify-content-end">
+    <!--begin::Close-->
+    <div
+      class="btn btn-sm btn-icon btn-active-color-primary"
+      (click)="onNoClick()"
+    >
+      <!--begin::Svg Icon | path: icons/duotone/Navigation/Close.svg-->
+      <span class="svg-icon svg-icon-1">
+				<svg
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          width="24px"
+          height="24px"
+          viewBox="0 0 24 24"
+          version="1.1"
+        >
+					<g
+            transform="translate(12.000000, 12.000000) rotate(-45.000000) translate(-12.000000, -12.000000) translate(4.000000, 4.000000)"
+            fill="#000000"
+          >
+						<rect
+              fill="#000000"
+              x="0"
+              y="7"
+              width="16"
+              height="2"
+              rx="1"
+            ></rect>
+						<rect
+              fill="#000000"
+              opacity="0.5"
+              transform="translate(8.000000, 8.000000) rotate(-270.000000) translate(-8.000000, -8.000000)"
+              x="0"
+              y="7"
+              width="16"
+              height="2"
+              rx="1"
+            ></rect>
+					</g>
+				</svg>
+			</span>
+      <!--end::Svg Icon-->
+    </div>
+    <!--end::Close-->
+  </div>
+  <div class="modal-body scroll-y pt-0 pb-15">
+    <div *ngIf="!inProgress && !completed">
+      <!--begin::Wrapper-->
+      <div class="mw-lg-600px mx-auto">
+        <!--begin::Heading-->
+        <div class="mb-13 text-center">
+          <!--begin::Title-->
+          <h1 class="mb-3">File Upload</h1>
+          <!--end::Title-->
+          <!--begin::Description-->
+          <div class="text-gray-400 fw-bold fs-5">
+            Drag and Drop the files or use select file button.
+          </div>
+          <!--end::Description-->
+        </div>
+      </div>
+      <!--end::Wrapper-->
+      <ngx-file-drop
+        dropZoneLabel="Drop files here"
+        (onFileDrop)="dropped($event)"
+        dropZoneClassName="drop"
+        contentClassName="drop-content"
+        [multiple]="true"
+        [directory]="false"
+        (onFileOver)="fileOver($event)"
+        (onFileLeave)="fileLeave($event)"
+      >
+        <div
+          class="
+						card
+						h-50
+						flex-center
+						bg-light-primary
+						border-primary border border-dashed
+						p-8
+					"
+        >
+          <img src="/assets/images/files/upload.svg" alt="" />
+          <div
+            class="text-hover-primary fs-5 fw-bolder mb-2"
+            (click)="openFileSelector()"
+          >
+            File Upload
+          </div>
+          <div class="fs-7 fw-bold text-gray-400 mt-auto">
+            Drag and drop files here
+          </div>
+        </div>
+
+        <ng-template
+          ngx-file-drop-content-tmp
+          let-openFileSelector="openFileSelector"
+        >
+          <div class="t-center p-t-16">
+            <img
+              src="/assets/images/files/upload.svg"
+              class="mb-3"
+              alt=""
+            />
+            <div
+              class="
+								text-hover-primary
+								fs-5
+								fw-bolder
+								cursor-pointer
+								mb-2
+							"
+              (click)="openFileSelector()"
+            >
+              File Upload
+            </div>
+            <div class="fs-7 fw-bold text-gray-400 mt-auto">
+              Drag and drop files here
+            </div>
+          </div>
+        </ng-template>
+      </ngx-file-drop>
+
+      <div class="row mt-5 mb-5" *ngIf="displayFiles.length > 0">
+        <div class="col">
+          <h5>Selected Files</h5>
+        </div>
+        <div class="col t-right">
+          <button
+            class="text-white btn min-h-40px btn-blue"
+            (click)="uploadFiles()"
+          >
+            Upload File ({{ displayFiles.length }})
+          </button>
+        </div>
+      </div>
+      <div class="row g-6 mb-6 mt-5">
+        <div
+          class="col-lg-3 col-md-4 col-sm-6"
+          *ngFor="let file of displayFiles"
+        >
+          <mat-card class="file-card mat-elevation-z2 h-100">
+            <div class="t-right">
+							<span
+                class="
+									mdi mdi-close
+									fs-18
+									text-gray-500 text-hover-danger
+									cursor-pointer
+								"
+                (click)="remove(file)"
+              >
+							</span>
+            </div>
+            <!--begin::Card body-->
+            <div class="text-center p-3">
+              <div class="text-gray-800">
+                <div class="img-container">
+                  <div
+                    *ngIf="
+											file.ext === '.gif' ||
+												file.ext === '.jpg' ||
+												file.ext === '.png' ||
+												file.ext === '.jpeg' ||
+												file.ext === '.webp';
+											else otherFile
+										"
+                  >
+                    <img
+                      [src]="file.url | safeUrl"
+                      alt=""
+                      class="file-img"
+                    />
+                  </div>
+                </div>
+
+                <ng-template #otherFile>
+                  <div class="symbol symbol-60px mb-6">
+                    <img
+                      src="/assets/images/files/{{
+												file.ext.substring(1)
+											}}.svg"
+                      alt=""
+                    />
+                  </div>
+                </ng-template>
+
+                <!--begin::Title-->
+                <div class="fs-5 fw-bolder mb-2">
+                  {{ file.name }}
+                </div>
+                <!--end::Title-->
+              </div>
+              <div class="fs-7 fw-bold text-gray-400 mt-auto">
+                {{ file.updatedAt | humanDate }}
+              </div>
+            </div>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="inProgress" class="t-center pt-8">
+      <mat-progress-spinner
+        class="example-margin"
+        color="warn"
+        mode="determinate"
+        [value]="percentage"
+      >
+      </mat-progress-spinner>
+      <h4 class="mt-5">
+        Please wait uploading assets({{ percentage }}%)
+        {{ percentage % 2 === 0 ? "..." : "" }}
+      </h4>
+    </div>
+
+    <div *ngIf="!inProgress && completed">
+      <img src="assets/images/upload.png" alt="Upload" />
+      <h4>Your files are uploaded successfully!</h4>
+      <div class="row">
+        <div class="col">
+          <button class="btn btn-blue" (click)="reset(2)">
+            Upload More
+          </button>
+        </div>
+        <div class="col">
+          <button class="btn btn-danger" (click)="reset(1)">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

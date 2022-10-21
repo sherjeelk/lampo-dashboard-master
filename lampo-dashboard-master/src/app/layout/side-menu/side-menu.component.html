@@ -1,0 +1,24 @@
+<div class="menu-container" *ngIf="expanded">
+  <div *ngFor="let menu of menus">
+    <div *ngIf="!menu.header" class="menu-item" (click)="openLink(menu)" [ngClass]="selected === menu ? 'selected-item' : ''">
+      <div class="dis-inline-block">
+        <span class="icon mdi mdi-{{menu.icon}} fs-18 m-r-16"></span>
+        <span class="no-padding-margin">{{menu.title}}</span>
+      </div>
+      <span class="mdi mdi-circle fs-8 m-r-16 selected-icon" *ngIf="selected === menu"></span>
+    </div>
+
+    <div *ngIf="menu.header" class="header-link">
+      <hr>
+      <div class="m-l-12 m-b-12">{{menu.title}}</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="menu-icon-container" *ngIf="!expanded">
+  <div *ngFor="let menu of menus" class="menu-icon-item" [routerLink]="menu.link">
+    <span class="hover-icon mdi mdi-{{menu.icon}} " [ngClass]="selected === menu ? 'active-color': ''" ></span>
+  </div>
+</div>
+

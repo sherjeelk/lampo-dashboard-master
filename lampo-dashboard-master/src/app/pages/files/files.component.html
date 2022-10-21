@@ -1,0 +1,170 @@
+<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+
+  <div class="post d-flex flex-column-fluid" id="kt_post">
+    <!--begin::Container-->
+    <div class="container" id="kt_content_container">
+      <mat-card class="mat-elevation-z3" >
+        <div class="card-body pt-9 pb-0">
+          <!--begin::Details-->
+          <div class="d-flex flex-wrap flex-sm-nowrap mb-6">
+            <!--begin::Image-->
+            <div class="d-flex flex-center flex-shrink-0 bg-light rounded w-100px h-100px w-lg-150px h-lg-150px me-7 mb-4">
+              <img alt="image" class="mw-50px mw-lg-75px" src="/assets/images/litcode.png">
+            </div>
+            <!--end::Image-->
+            <!--begin::Wrapper-->
+            <div class="flex-grow-1">
+              <!--begin::Head-->
+              <div class="d-flex justify-content-between align-items-start flex-wrap mb-2">
+                <!--begin::Details-->
+                <div class="d-flex flex-column">
+                  <!--begin::Status-->
+                  <div class="d-flex align-items-center mb-1">
+                    <a class="text-gray-800 text-hover-primary fs-2 fw-bolder me-3" href="#">Files
+                      Dashboard</a>
+                    <span class="badge badge-light-success me-auto">In Use {{usedPercent.toFixed(2)}}
+                      %</span>
+                  </div>
+                  <!--end::Status-->
+                  <!--begin::Description-->
+                  <div class="d-flex flex-wrap fw-bold mb-4 fs-5 text-gray-400">All files stored in
+                    this application can be managed from here
+                  </div>
+                  <!--end::Description-->
+                </div>
+                <!--end::Details-->
+                <!--begin::Actions-->
+                <div class="d-flex mb-4">
+                  <!--begin::Search-->
+                  <div class="d-flex align-items-center position-relative me-4">
+                    <!--begin::Svg Icon | path: icons/duotone/General/Search.svg-->
+                    <span class="svg-icon svg-icon-3 position-absolute ms-3 mt-n1">
+												<svg height="24px" version="1.1" viewBox="0 0 24 24"
+                             width="24px" xmlns="http://www.w3.org/2000/svg">
+													<g fill="none" fill-rule="evenodd" stroke="none" stroke-width="1">
+														<rect height="24" width="24" x="0" y="0"></rect>
+														<path d="M14.2928932,16.7071068 C13.9023689,16.3165825 13.9023689,15.6834175 14.2928932,15.2928932 C14.6834175,14.9023689 15.3165825,14.9023689 15.7071068,15.2928932 L19.7071068,19.2928932 C20.0976311,19.6834175 20.0976311,20.3165825 19.7071068,20.7071068 C19.3165825,21.0976311 18.6834175,21.0976311 18.2928932,20.7071068 L14.2928932,16.7071068 Z"
+                                  fill="#000000" fill-rule="nonzero" opacity="0.3"></path>
+														<path d="M11,16 C13.7614237,16 16,13.7614237 16,11 C16,8.23857625 13.7614237,6 11,6 C8.23857625,6 6,8.23857625 6,11 C6,13.7614237 8.23857625,16 11,16 Z M11,18 C7.13400675,18 4,14.8659932 4,11 C4,7.13400675 7.13400675,4 11,4 C14.8659932,4 18,7.13400675 18,11 C18,14.8659932 14.8659932,18 11,18 Z"
+                                  fill="#000000" fill-rule="nonzero"></path>
+													</g>
+												</svg>
+											</span>
+                    <!--end::Svg Icon-->
+                    <input class="form-control form-control-sm form-control-solid bg-white fw-bold fs-7 w-250px ps-9"
+                           id="kt_filter_search"
+                           placeholder="Search"
+                           type="text">
+                  </div>
+                  <!--end::Search-->
+                  <a class="btn btn-primary btn-sm fw-bolder" href="#">Search</a>
+                </div>
+                <!--end::Actions-->
+              </div>
+              <!--end::Head-->
+              <!--begin::Info-->
+              <div class="d-flex flex-wrap justify-content-start">
+                <!--begin::Stats-->
+                <div class="d-flex flex-wrap">
+                  <!--begin::Stat-->
+                  <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                    <!--begin::Number-->
+                    <div class="d-flex align-items-center">
+                      <div class="fs-4 fw-bolder">{{total}} GB</div>
+                    </div>
+                    <!--end::Number-->
+                    <!--begin::Label-->
+                    <div class="fw-bold fs-6 text-gray-400">Available</div>
+                    <!--end::Label-->
+                  </div>
+                  <!--end::Stat-->
+                  <!--begin::Stat-->
+                  <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                    <!--begin::Number-->
+                    <div class="d-flex align-items-center">
+                      <div class="fs-4 fw-bolder counted text-primary" data-kt-countup="true"
+                           data-kt-countup-value="75">{{usedSpace}}</div>
+                    </div>
+                    <!--end::Number-->
+                    <!--begin::Label-->
+                    <div class="fw-bold fs-6 text-gray-400">Used</div>
+                    <!--end::Label-->
+                  </div>
+                  <!--end::Stat-->
+                  <!--begin::Stat-->
+                  <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
+                    <!--begin::Number-->
+                    <div class="d-flex align-items-center">
+                      <div class="fs-4 fw-bolder counted text-success" data-kt-countup="true"
+                           data-kt-countup-prefix="$"
+                           data-kt-countup-value="15000">{{remaining.toFixed(2)}} GB
+                      </div>
+                    </div>
+                    <!--end::Number-->
+                    <!--begin::Label-->
+                    <div class="fw-bold fs-6 text-gray-400">Remaining</div>
+                    <!--end::Label-->
+                  </div>
+                  <!--end::Stat-->
+                </div>
+                <!--end::Stats-->
+              </div>
+              <!--end::Info-->
+            </div>
+            <!--end::Wrapper-->
+          </div>
+          <!--end::Details-->
+        </div>
+      </mat-card>
+      <div class="d-flex flex-wrap flex-stack my-5">
+        <h3 class="fw-bolder my-2">Image &amp; Files</h3>
+        <div class="d-flex my-2">
+          <button (click)="delete()" [disabled]="!showDelete" class="btn btn-sm btn-danger me-3">Delete
+          </button>
+          <a (click)="openUploadDialog()" class="btn btn-sm btn-primary me-3">Add File</a>
+        </div>
+        <!--end::Controls-->
+      </div>
+      <!--end::Toolbar-->
+      <!--begin::Row-->
+      <div class="row g-6 mb-6">
+        <div *ngFor="let file of files" class="col-lg-3 col-md-4 col-sm-6">
+          <mat-card class="file-card mat-elevation-z2 h-100">
+            <!--begin::Card body-->
+            <div class="text-center">
+              <div class="text-gray-800">
+                <div *ngIf="file.ext === '.gif' || file.ext === '.jpg' || file.ext === '.png' || file.ext === '.jpeg' || file.ext === '.webp'; else otherFile"
+                     class="min-h-img-holder">
+                  <img  [src]="BASE_URL + file.url" alt=""
+                        class="file-img">
+                </div>
+
+                <ng-template #otherFile>
+                  <div class="pt-7 h-150px">
+                    <img alt="" class="file-img"
+                         src="/assets/images/files/{{file.ext.substring(1)}}.svg">
+                  </div>
+                </ng-template>
+
+                <!--begin::Title-->
+                <div class="row">
+                  <div class="col-10">
+                    <div class="fs-5 fw-bolder t-left mb-2 mt-5">{{file.name | truncate:[20]}}</div>
+                  </div>
+                  <div class="col-2">
+                    <mat-checkbox (change)="checkboxChanged()" [(ngModel)]="file.checked"
+                                  class="mt-5"></mat-checkbox>
+                  </div>
+                </div>
+                <!--end::Title-->
+              </div>
+              <div class="fs-7 fw-bold text-gray-400 t-left mt-auto">{{file.updatedAt | humanDate}}</div>
+            </div>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--end::Container-->
+</div>
+<!--end::Post-->
